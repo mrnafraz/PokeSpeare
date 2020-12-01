@@ -40,6 +40,8 @@ You can build this .NET 5.0 application locally with the [.NET 5.0 SDK](https://
 You must have the [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) installed.
 
 ```console
+cd src
+cd PokeSpeare.Service
 dotnet run
 ```
 
