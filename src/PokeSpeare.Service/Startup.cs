@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PokeApiNet;
 using PokeSpeare.Service.Services;
+using System.Net.Http;
 
 namespace PokeSpeare.Service
 {
@@ -29,7 +23,9 @@ namespace PokeSpeare.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPokemonService, PokemonService>();
+            services.AddTransient<IShakespeareTranslationService, ShakespeareTranslationService>();
             services.AddSingleton(typeof(PokeApiClient));
+            services.AddSingleton(typeof(HttpClient));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -9,11 +9,13 @@ namespace PokeSpeare.Service.Controllers
     public class PokemonController : ControllerBase
     {
         private readonly IPokemonService _pokemonService;
+        private readonly IShakespeareTranslationService _shakespeareTranslationService;
         private readonly ILogger<PokemonController> _logger;
 
-        public PokemonController(IPokemonService pokemonService, ILogger<PokemonController> logger)
+        public PokemonController(IPokemonService pokemonService, IShakespeareTranslationService shakespeareTranslationService, ILogger<PokemonController> logger)
         {
             _pokemonService = pokemonService;
+            _shakespeareTranslationService = shakespeareTranslationService;
             _logger = logger;
         }
 
@@ -24,6 +26,7 @@ namespace PokeSpeare.Service.Controllers
             var result = _pokemonService.GetPokemon(name);
             if (result.Result == null) return NotFound($"{name} not found");
 
+            result.Result.Description = _shakespeareTranslationService.Translate(result.Result.Description).Result;
             return Ok(result.Result);
         }
     }

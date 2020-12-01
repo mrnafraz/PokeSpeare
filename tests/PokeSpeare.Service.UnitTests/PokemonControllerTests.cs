@@ -16,9 +16,10 @@ namespace PokeSpeare.Service.UnitTests
         public void Setup()
         {
             var mockPokemonService = new Mock<IPokemonService>();
+            var mockShakespeareTranslationService = new Mock<IShakespeareTranslationService>();
             mockPokemonService.Setup(x => x.GetPokemon(Constants.ValidPokemon)).ReturnsAsync(new PokemonInfo());
             mockPokemonService.Setup(x => x.GetPokemon(Constants.InvalidPokemon)).ReturnsAsync(default(PokemonInfo));
-            _pokemonController = new PokemonController(mockPokemonService.Object, NullLogger<PokemonController>.Instance);
+            _pokemonController = new PokemonController(mockPokemonService.Object, mockShakespeareTranslationService.Object, NullLogger<PokemonController>.Instance);
         }
 
         [Test]
