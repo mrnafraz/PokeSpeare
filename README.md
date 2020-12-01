@@ -21,8 +21,10 @@ You can build and run the application in Docker using the following commands. Th
 
 ```console
 docker build -t pokespeare .
-docker run --rm pokespeare
+docker run --rm -p 5000:80 pokespeare
 ```
+
+To access the application on the browser navigate to http://localhost:5000/pokemon/{pokemon-name} where `pokemon-name` can be substituted with a pokemon name. For example  `charizard` can be accessed using [http://localhost:5000/pokemon/charizard](http://localhost:5000/pokemon/charizard).
 
 The commands above run unit tests as part of `docker build`. You can also run .NET unit tests as part of `docker run`. The following instructions provide you with the simplest way of doing that.
 
@@ -40,3 +42,5 @@ You must have the [.NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.
 ```console
 dotnet run
 ```
+
+To access the application on the browser navigate to http://localhost:5000/pokemon/{pokemon-name} where `pokemon-name` can be substituted with a pokemon name. For example  `charizard` can be accessed using [http://localhost:5000/pokemon/charizard](http://localhost:5000/pokemon/charizard).
