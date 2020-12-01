@@ -15,7 +15,8 @@ namespace PokeSpeare.Service.Services
         public ShakespeareTranslationService(HttpClient client)
         {
             _client = client;
-            _client.BaseAddress = new Uri(TranslationServiceUri);
+            if (_client.BaseAddress == null)
+                _client.BaseAddress = new Uri(TranslationServiceUri);
         }
 
         public async Task<string> Translate(string text)
