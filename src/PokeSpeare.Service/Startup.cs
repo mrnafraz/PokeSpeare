@@ -25,7 +25,7 @@ namespace PokeSpeare.Service
             services.AddTransient<IPokemonService, PokemonService>();
             services.AddTransient<IShakespeareTranslationService, ShakespeareTranslationService>();
             services.AddSingleton(typeof(PokeApiClient));
-            services.AddSingleton(typeof(HttpClient));
+            services.AddSingleton<HttpClient>(x => new HttpClient { BaseAddress = new System.Uri(Constants.TranslationServiceUri) });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

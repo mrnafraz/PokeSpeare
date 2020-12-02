@@ -10,13 +10,10 @@ namespace PokeSpeare.Service.Services
     public class ShakespeareTranslationService : IShakespeareTranslationService
     {
         private readonly HttpClient _client;
-        private const string TranslationServiceUri = "https://api.funtranslations.com/translate/shakespeare.json";
 
         public ShakespeareTranslationService(HttpClient client)
         {
             _client = client;
-            if (_client.BaseAddress == null)
-                _client.BaseAddress = new Uri(TranslationServiceUri);
         }
 
         public async Task<string> Translate(string text)
