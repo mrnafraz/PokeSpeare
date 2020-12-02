@@ -15,6 +15,7 @@ namespace PokeSpeare.Service.UnitTests
         private ShakespeareTranslationService _shakespeareTranslationService;
         private const string TextToTranslate = "You gave Mr. Tim a hearty meal, but unfortunately what he ate made him die.";
         private const string TranslatedText = "Thee did giveth mr. Tim a hearty meal,  but unfortunately what he did doth englut did maketh him kicketh the bucket.";
+        private const string TranslationServiceUri = "http://test.com";
 
         [Test]
         public async Task ShouldGetShakespeareTranslation()
@@ -36,7 +37,7 @@ namespace PokeSpeare.Service.UnitTests
                 })
                 .Verifiable();
 
-            var client = new HttpClient(mockHandler.Object);
+            var client = new HttpClient(mockHandler.Object) {BaseAddress = new Uri(TranslationServiceUri)};
             _shakespeareTranslationService = new ShakespeareTranslationService(client);
 
             var result = await _shakespeareTranslationService.Translate(TextToTranslate);
@@ -61,7 +62,7 @@ namespace PokeSpeare.Service.UnitTests
                 //.ReturnsAsync(new HttpResponseMessage(HttpStatusCode.NotFound))
                 .Verifiable();
 
-            var client = new HttpClient(mockHandler.Object);
+            var client = new HttpClient(mockHandler.Object) {BaseAddress = new Uri(TranslationServiceUri)};
             _shakespeareTranslationService = new ShakespeareTranslationService(client);
 
             var result = await _shakespeareTranslationService.Translate(TextToTranslate);
@@ -86,7 +87,7 @@ namespace PokeSpeare.Service.UnitTests
                 //.ReturnsAsync(new HttpResponseMessage(HttpStatusCode.NotFound))
                 .Verifiable();
 
-            var client = new HttpClient(mockHandler.Object);
+            var client = new HttpClient(mockHandler.Object) {BaseAddress = new Uri(TranslationServiceUri)};
             _shakespeareTranslationService = new ShakespeareTranslationService(client);
 
             var result = await _shakespeareTranslationService.Translate(TextToTranslate);
